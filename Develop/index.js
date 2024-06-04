@@ -1,5 +1,3 @@
-
-// Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 
@@ -10,39 +8,18 @@ const questions = [
     {
         type: 'input',
         name: 'github',
-        message: "Enter your GitHub username:",
+        message: "Please enter your GitHub username:",
         default: "GitHubUser"
     },
     {
         type: 'input',
         name: 'email',
-        message: "Enter your email address:",
-        default: "ellagirin@gmail.com"
+        message: "Please enter your email address:",
     },
     {
         type: 'input',
         name: 'title',
-        message: "Enter your project's title:",
-        default: "My Awesome Project"
-    },
-    {
-        type: 'input',
-        name: 'description',
-        message: "Write a short description of your project:",
-        default: "A brief description of my project"
-    },
-    {
-        type: 'list',
-        name: 'license',
-        message: "Choose a license for your project:",
-        choices: ['MIT', 'APACHE 3.0', 'GPL v3.0', 'BSD 3-Clause', 'None'],
-        default: 'MIT'
-    },
-    {
-        type: 'input',
-        name: 'installation',
-        message: "What command should be run to install dependencies?",
-        default: "npm install"
+        message: "Please enter your project's title:",
     },
     {
         type: 'input',
@@ -51,17 +28,11 @@ const questions = [
         default: "npm test"
     },
     {
-        type: 'input',
-        name: 'usage',
-        message: "What should users know about using the repository?",
-        default: "Instructions on usage"
+        type: 'list',
+        name: 'license',
+        message: "Please choose a license for your project:",
+        choices: ['MIT', 'GPLv3', 'Apache 2.0', 'BSD 3-Clause', 'None'],
     },
-    {
-        type: 'input',
-        name: 'contributing',
-        message: "Who contributed to this project?",
-        default: "Your collaborator's names"
-    }
 ];
 
 // Create a function to write README file
@@ -75,15 +46,12 @@ function writeToFile(fileName, data) {
     });
 }
 
-// Create a function to initialize app
+// this function initializes the app
 function init() {}
-console.log("Welcome to the README Generator");
 inquirer.prompt(questions).then((answers) => {
-    console.log("Generating your README...");
+    console.log("Generating the README file");
     const markdownContent = generateMarkdown(answers);
     writeToFile("README.md", markdownContent);
 });
-
-
-// Function call to initialize app
-  init();
+  
+init();
